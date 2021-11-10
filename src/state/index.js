@@ -1,1 +1,1 @@
-export * as actionCreators from './actionCreators/index';
+export * as actionCreators from './counterFeature/actions';
