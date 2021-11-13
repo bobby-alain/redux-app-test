@@ -1,10 +1,11 @@
 import { combineReducers } from 'redux';
 import account from '../counterFeature/accountReducer';
-import courses from '../CourseFeature/courseReducer';
+import { authorReducer, taskReducer } from '../CourseFeature/courseReducer';
 
 const reducers = combineReducers({
   account,
-  courses,
+  authorReducer,
+  taskReducer,
 });
 
 export default reducers;

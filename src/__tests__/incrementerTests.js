@@ -4,9 +4,6 @@ import sinon from 'sinon';
 
 describe('incremental test', () => {
   let store;
-  const mySpy = sinon.spy();
-
-  console.log('mySpy', mySpy);
 
   beforeEach(() => {
     sinon.restore();

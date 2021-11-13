@@ -1,8 +1,15 @@
-export const CREATE_COURSE = 'CREATE_COURSE';
+import { AUTHOR_COURSE, TASK_COURSE } from '../types';
 
-export function createCourse(course) {
+export function authorAction(course) {
   return {
-    type: CREATE_COURSE,
-    course,
+    type: AUTHOR_COURSE,
+    payload: course,
+  };
+}
+
+export function taskAction(task) {
+  return {
+    type: TASK_COURSE,
+    payload: task,
   };
 }

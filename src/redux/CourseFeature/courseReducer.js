@@ -1,16 +1,28 @@
-import * as CREATE_COURSE from './Actions';
+import { AUTHOR_COURSE, TASK_COURSE } from '../types';
 
-export default function courseReducer(state = [], action) {
+const initialState = {
+  author: [
+    { id: 1, name: 'Steve' },
+    { id: 2, name: 'Bobby' },
+  ],
+  tasks: [{ title: 'Book number 1' }, { title: 'Book number 2' }],
+};
+
+export const authorReducer = (state = initialState.author, action) => {
   switch (action.type) {
-    case CREATE_COURSE:
-      debugger;
-      return [
-        ...state,
-        {
-          title: action.course.title,
-        },
-      ];
+    case AUTHOR_COURSE:
+      return [...state, action.payload];
     default:
       return state;
   }
-}
+};
+
+export const taskReducer = (state = initialState.tasks, action) => {
+  switch (action.type) {
+    case TASK_COURSE:
+      return [...state, action.payload];
+
+    default:
+      return state;
+  }
+};

@@ -1,37 +1,43 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { courseAction } from '../redux/index';
+import { bindActionCreators } from 'redux';
 
 const CoursesPage = () => {
-  const [courses, setCourses] = React.useState('');
+  const [course, setCourses] = React.useState([]);
   const [loading, setLoading] = React.useState(false);
 
-  const store = useSelector(state => state.courses);
+  const store = useSelector(state => state.authorReducer);
   const dispatch = useDispatch();
+  const { authorAction, taskAction } = bindActionCreators(
+    courseAction,
+    dispatch
+  );
 
   const handleChange = e => {
     setCourses(e.target.value);
   };
-  console.log(store);
+
   const handleSubmit = event => {
     event.preventDefault();
     setLoading(true);
-    dispatch(courseAction.createCourse(courses));
+    authorAction(course);
+    taskAction(course);
     setLoading(false);
     setCourses('');
   };
 
   return (
     <div>
-      CoursesPage {courses}
+      CoursesPage {course}
       <form onSubmit={handleSubmit}>
-        <input type="text" value={courses} onChange={handleChange} />
+        <input type="text" value={course} onChange={handleChange} />
         <input type="submit" value="Submit" />
       </form>
       {loading && <h1>Loading...</h1>}
-      {/* {store.courses.map(course => (
-        <div key={course.id}>{course.title}</div>
-      ))} */}
+      {store.map(course => (
+        <div key={course.id}>Author: {course.name}</div>
+      ))}
     </div>
   );
 };

@@ -16,8 +16,8 @@ function App() {
 
   return (
     <div className="App">
-      <CoursesPage />
       <header className="App-header">
+        <CoursesPage />
         <img src={logo} className="App-logo" alt="logo" />
         <h1 className="App-logo">${store} 🏦</h1>
         <button onClick={() => depositMony(100)}>Deposit</button>
