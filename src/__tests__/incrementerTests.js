@@ -1,9 +1,15 @@
-import { getStore } from '../state/store';
-import * as actions from '../state/counterFeature/actions';
+import { getStore } from '../redux/store';
+import * as actions from '../redux/counterFeature/actions';
+import sinon from 'sinon';
 
 describe('incremental test', () => {
   let store;
+  const mySpy = sinon.spy();
+
+  console.log('mySpy', mySpy);
+
   beforeEach(() => {
+    sinon.restore();
     store = getStore();
   });
   it('should increase number to 100', () => {

@@ -2,19 +2,21 @@ import React from 'react';
 import logo from './logo.svg';
 import { useSelector, useDispatch } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { actionCreators } from './state/index';
+import { counterAction } from './redux/index';
 import './App.css';
+import CoursesPage from './components/CoursesPage';
 
 function App() {
   const store = useSelector(state => state.account);
   const dispatch = useDispatch();
   const { depositMony, withdrawMony } = bindActionCreators(
-    actionCreators,
+    counterAction,
     dispatch
   );
 
   return (
     <div className="App">
+      <CoursesPage />
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <h1 className="App-logo">${store} 🏦</h1>
