@@ -1,17 +1,16 @@
 import { AUTHOR_COURSE, TASK_COURSE } from '../types';
+let id = 1;
 
 const initialState = {
-  author: [
-    { id: 1, name: 'Steve' },
-    { id: 2, name: 'Bobby' },
-  ],
+  author: [],
   tasks: [{ title: 'Book number 1' }, { title: 'Book number 2' }],
 };
 
 export const authorReducer = (state = initialState.author, action) => {
   switch (action.type) {
     case AUTHOR_COURSE:
-      return [...state, action.payload];
+      const newAuthor = { id: id++, ...action.payload };
+      return [...state, newAuthor];
     default:
       return state;
   }

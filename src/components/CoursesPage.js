@@ -1,18 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { courseAction } from '../redux/index';
-import { bindActionCreators } from 'redux';
+import { authorAction } from '../redux/CourseFeature/Actions';
 
 const CoursesPage = () => {
-  const [course, setCourses] = React.useState([]);
+  const nameFromStore = useSelector(state => state.authorReducer);
+  const mapStore = nameFromStore.map(item => item.name);
+
+  const [course, setCourses] = React.useState(mapStore);
   const [loading, setLoading] = React.useState(false);
 
-  const store = useSelector(state => state.authorReducer);
   const dispatch = useDispatch();
-  const { authorAction, taskAction } = bindActionCreators(
-    courseAction,
-    dispatch
-  );
 
   const handleChange = e => {
     setCourses(e.target.value);
@@ -20,23 +17,36 @@ const CoursesPage = () => {
 
   const handleSubmit = event => {
     event.preventDefault();
+
     setLoading(true);
-    authorAction(course);
-    taskAction(course);
+    dispatch(authorAction(course));
     setLoading(false);
     setCourses('');
   };
 
+  useEffect(() => {
+    if (nameFromStore.length > 0) {
+      setLoading(false);
+    }
+  }, [nameFromStore]);
+
   return (
     <div>
-      CoursesPage {course}
+      Items {mapStore.length}
       <form onSubmit={handleSubmit}>
-        <input type="text" value={course} onChange={handleChange} />
-        <input type="submit" value="Submit" />
+        <input
+          type="text"
+          placeholder="add author"
+          value={course}
+          onChange={handleChange}
+        />
+        <input type="submit" value="Submit" disabled={!course.length} />
       </form>
       {loading && <h1>Loading...</h1>}
-      {store.map(course => (
-        <div key={course.id}>Author: {course.name}</div>
+      {nameFromStore.map(course => (
+        <div key={course.id}>
+          <h3>Author Name: {course.name}</h3>
+        </div>
       ))}
     </div>
   );
