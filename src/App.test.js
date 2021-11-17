@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 
 import { Provider } from 'react-redux';
 import { getStore } from './redux/store';
@@ -13,23 +13,4 @@ test.skip('renders learn react link', () => {
   );
 
   expect(getByText(/WITHDRAW/i)).toBeInTheDocument();
-});
-
-describe('Async component', () => {
-  test('should renders name from api', async () => {
-    window.fetch = jest.fn();
-    window.fetch.mockResolvedValueOnce({
-      json: () =>
-        Promise.resolve({
-          name: 'John',
-        }),
-    });
-    render(
-      <Provider store={getStore()}>
-        <App />
-      </Provider>
-    );
-    const name = await screen.queryByText('name');
-    expect(name);
-  });
 });

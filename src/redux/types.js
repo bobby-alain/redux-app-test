@@ -1,2 +1,5 @@
 export const AUTHOR_COURSE = 'AUTHOR_COURSE';
 export const TASK_COURSE = 'TASK_COURSE';
+
+export const SET_USER_DATA = 'SET_USER_DATA';
+export const DELETE_USER_DATA = 'DELETE_USER_DATA';
