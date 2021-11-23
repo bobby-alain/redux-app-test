@@ -1,4 +1,5 @@
 import axios from 'axios';
+// import { fetchUser } from '../helper/fetchUser';
 
 // Todo:  get user data, create service and mock it
 let service = {
@@ -15,6 +16,12 @@ let service = {
     );
     return resp.data;
   },
+
+  // fetch api call
+  // getUserFromFetchUserFile: async () => {
+  //   const resp = await fetchUser(2);
+  //   return resp;
+  // },
 };
 
 // get service

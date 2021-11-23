@@ -3,23 +3,25 @@ import { useSelector, useDispatch } from 'react-redux';
 import { authorAction } from '../redux/CourseFeature/Actions';
 
 const CoursesPage = () => {
-  const nameFromStore = useSelector(state => state.authorReducer);
-  const mapStore = nameFromStore.map(item => item.name);
+  const nameFromStore = useSelector((state) => state.authorReducer);
+  const mapStore = nameFromStore.map((item) => item.name);
 
-  const [course, setCourses] = React.useState(mapStore);
+  const [course, setCourses] = React.useState('');
   const [loading, setLoading] = React.useState(false);
 
   const dispatch = useDispatch();
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     setCourses(e.target.value);
   };
 
-  const handleSubmit = event => {
+  const handleSubmit = (event) => {
     event.preventDefault();
 
-    setLoading(true);
-    dispatch(authorAction(course));
+    setTimeout(() => {
+      setLoading(true);
+      dispatch(authorAction(course));
+    }, 1000);
     setLoading(false);
     setCourses('');
   };
@@ -43,9 +45,9 @@ const CoursesPage = () => {
         <input type="submit" value="Submit" disabled={!course.length} />
       </form>
       {loading && <h1>Loading...</h1>}
-      {nameFromStore.map(course => (
+      {nameFromStore.map((course) => (
         <div key={course.id}>
-          <h3>Author Name: {course.name}</h3>
+          <h3>Author: {course.name}</h3>
         </div>
       ))}
     </div>
