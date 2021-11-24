@@ -6,8 +6,7 @@ import CoursesPage from './components/CoursesPage';
 import GetUser from './components/GetUser';
 
 function App() {
-  const user = useSelector((state) => state.userReducer.name);
-
+  const user = useSelector((state) => state.userReducer.userData?.name);
   const dispatch = useDispatch();
 
   React.useEffect(() => {

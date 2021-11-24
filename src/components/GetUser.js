@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
-import { fetchUser } from '../helper/fetchUser';
-
+import { getService } from '../services/userService';
 const GetUser = () => {
-  const [loading, setLoading] = useState(false);
   const [user, setUser] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const getUser = async () => {
     setLoading(true);
-    const response = await fetchUser(2);
+    const response = await getService().getUserData(2);
     setUser(response.name);
     setLoading(false);
   };

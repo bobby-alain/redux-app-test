@@ -1,5 +1,4 @@
 import axios from 'axios';
-// import { fetchUser } from '../helper/fetchUser';
 
 // Todo:  get user data, create service and mock it
 let service = {
@@ -11,17 +10,11 @@ let service = {
   },
 
   deleteUser: async (userId) => {
-    const resp = await axios.delete(
-      `https://jsonplaceholder.typicode.com/users/${userId}`
-    );
-    return resp.data;
+    // const resp = await axios.delete(
+    //   `https://jsonplaceholder.typicode.com/users/${userId}`
+    // );
+    // return resp.data;
   },
-
-  // fetch api call
-  // getUserFromFetchUserFile: async () => {
-  //   const resp = await fetchUser(2);
-  //   return resp;
-  // },
 };
 
 // get service
